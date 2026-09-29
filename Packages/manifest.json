@@ -1,0 +1,42 @@
+{
+  "scopedRegistries": [
+    {
+      "name": "axyl",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.com2usplatform.hiveaxyl"
+      ]
+    }
+  ],
+  "dependencies": {
+    "com.com2usplatform.hiveaxyl.analytics": "1.0.0",
+    "com.com2usplatform.hiveaxyl.auth": "1.0.0",
+    "com.com2usplatform.hiveaxyl.auth.addon.apple": "1.0.0",
+    "com.com2usplatform.hiveaxyl.auth.addon.credentialmanager": "1.0.0",
+    "com.com2usplatform.hiveaxyl.auth.addon.gpg": "1.0.0",
+    "com.com2usplatform.hiveaxyl.auth.addon.steam": "1.0.0",
+    "com.com2usplatform.hiveaxyl.auth.addon.webauth": "1.0.0",
+    "com.com2usplatform.hiveaxyl.core": "1.0.0",
+    "com.com2usplatform.hiveaxyl.coupon": "1.0.0",
+    "com.com2usplatform.hiveaxyl.mailbox": "1.0.0",
+    "com.com2usplatform.hiveaxyl.payments": "1.0.0",
+    "com.com2usplatform.hiveaxyl.payments.addon.apple": "1.0.0",
+    "com.com2usplatform.hiveaxyl.payments.addon.google": "1.0.0",
+    "com.com2usplatform.hiveaxyl.payments.addon.steam": "1.0.0",
+    "com.com2usplatform.hiveaxyl.push": "1.0.0",
+    "com.com2usplatform.hiveaxyl.push.addon.apns": "1.0.0",
+    "com.com2usplatform.hiveaxyl.push.addon.applenotification": "1.0.0",
+    "com.com2usplatform.hiveaxyl.push.addon.fcm": "1.0.0",
+    "com.com2usplatform.hiveaxyl.serviceaccess": "1.0.0",
+    "com.com2usplatform.hiveaxyl.steamworks": "1.0.0",
+    "com.com2usplatform.hiveaxyl.storage": "1.0.0",
+    "com.com2usplatform.hiveaxyl.tcb": "1.0.0",
+    "com.rlabrecque.steamworks.net": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net#20.2.0",
+    "com.unity.mobile.notifications": "2.4.3",
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.unity.test-framework": "1.4.5",
+    "com.unity.ugui": "2.0.0",
+    "com.unity.modules.uielements": "1.0.0",
+    "com.unity.modules.unitywebrequest": "1.0.0"
+  }
+}

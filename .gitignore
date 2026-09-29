@@ -1,0 +1,103 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.zip
+*.tar
+*.gz
+*.7z
+._*
+
+# AI Tools
+.claude/
+
+# IDE & Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.suo
+*.user
+*.userprefs
+*.launch
+*.vbproj
+*.vcxproj
+*.vcxproj.user
+
+# Unity build/cache output
+[Ll]ibrary/
+[Tt]emp/
+# CMake/Ninja staging for the Android Gradle plugin's externalNativeBuild step,
+# which compiles Unity's GameActivity and FramePacing components for the target ABI.
+.utmp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+Recordings/
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.unitypackage
+
+# Generated solution / project files (Unity regenerates these per machine)
+*.csproj
+*.sln
+*.unityproj
+.vs/
+
+# Unity regenerates .csproj per machine, but a hand-authored one outside Assets/ is
+# source and must survive the rule above.
+!dotnet/**/*.csproj
+.dotnet-build/
+
+# Binaries — kept out of repo (this polyrepo is source-only at scaffold stage)
+*.aar
+*.framework
+*.dll
+*.so
+*.jar
+*.a
+*.exe
+*.o
+
+# Node tooling
+node_modules/
+
+# Steamworks local dev artifact (per-developer app id; not committed)
+steam_appid.txt
+
+# Per-build application configuration. Identifiers, not secrets, but they belong to
+# whoever made the build rather than to the repository.
+Assets/StreamingAssets/sample.config.json
+Assets/StreamingAssets/sample.config.json.meta
+
+# Firebase Android configuration for the FCM addon: a per-project download from the
+# Google console, carrying that project's identifiers. The addon's build postprocessor
+# warns and skips the Google services wiring when it is absent.
+Assets/Plugins/Android/google-services.json
+Assets/Plugins/Android/google-services.json.meta
+
+# A local checkout of the SDK packages, placed here to build against instead of the
+# registry: Unity resolves a folder under Packages/ as an embedded package and prefers
+# it over the registry version, so this needs no edit to manifest.json. Whichever of
+# the two package-id families a checkout uses, it belongs to one machine and is never
+# committed.
+Packages/com.hive.axyl.*
+Packages/com.com2usplatform.hiveaxyl.*
+
+# Build Profiles the editor writes when a project is opened on 6000.3. Per-developer
+# editor state, not a build input.
+Assets/Settings/
+Assets/Settings.meta
+
+# Python bytecode, written whenever one of the repository's own scripts is
+# imported rather than run.
+__pycache__/
+*.pyc

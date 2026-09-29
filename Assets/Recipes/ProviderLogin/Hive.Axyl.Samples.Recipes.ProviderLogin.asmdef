@@ -1,0 +1,18 @@
+{
+  "name": "Hive.Axyl.Samples.Recipes.ProviderLogin",
+  "rootNamespace": "Hive.Axyl.Samples.Recipes",
+  "references": [
+    "Hive.Axyl.Core",
+    "Hive.Axyl.Auth",
+    "Hive.Axyl.Samples.Recipes"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

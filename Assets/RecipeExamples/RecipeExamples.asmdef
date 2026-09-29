@@ -1,0 +1,15 @@
+{
+    "name": "Hive.Axyl.RecipeExamples",
+    "rootNamespace": "Hive.Axyl.Samples.RecipeExamples",
+    "references": [
+        "Hive.Axyl.Core",
+        "Hive.Axyl.Auth",
+        "Hive.Axyl.Samples.Recipes",
+        "Hive.Axyl.Samples.Recipes.ProviderLogin",
+        "Hive.Axyl.Samples.Recipes.LinkProvider",
+        "Hive.Axyl.Samples.Recipes.Payments",
+        "Hive.Axyl.Samples.Recipes.Push"
+    ],
+    "autoReferenced": false,
+    "noEngineReferences": true
+}

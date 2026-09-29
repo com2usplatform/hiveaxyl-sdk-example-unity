@@ -1,0 +1,14 @@
+{
+  "Exclude": [
+    "\\.meta$",
+    "\\.bundle/",
+    "^Library/",
+    "^Temp/",
+    "^Logs/",
+    "^ProjectSettings/",
+    "^Packages/packages-lock\\.json$",
+    "^Assets/Samples/_Hub/HubScene\\.unity$",
+    "^CODE_OF_CONDUCT\\.md$",
+    "^LICENSE$"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Hive.Axyl.RecipeExamples.LocalNotification",
+    "rootNamespace": "Hive.Axyl.Samples.RecipeExamples",
+    "references": [
+        "Hive.Axyl.Core",
+        "Hive.Axyl.Samples.Recipes",
+        "Hive.Axyl.Samples.Recipes.LocalNotification"
+    ],
+    "autoReferenced": false,
+    "noEngineReferences": true,
+    "defineConstraints": [
+        "HIVE_AXYL_UNITY_MOBILE_NOTIFICATIONS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.mobile.notifications",
+            "expression": "",
+            "define": "HIVE_AXYL_UNITY_MOBILE_NOTIFICATIONS"
+        }
+    ]
+}
