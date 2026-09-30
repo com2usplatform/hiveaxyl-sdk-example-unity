@@ -1,0 +1,31 @@
+{
+  "name": "Hive.Axyl.Samples.Recipes.ProviderLogin.Steam",
+  "rootNamespace": "Hive.Axyl.Samples.Recipes",
+  "references": [
+    "Hive.Axyl.Core",
+    "Hive.Axyl.Samples.Recipes",
+    "Hive.Axyl.Samples.Recipes.ProviderLogin",
+    "Hive.Axyl.Auth.Addon.Steam"
+  ],
+  "includePlatforms": [
+    "Editor",
+    "LinuxStandalone64",
+    "macOSStandalone",
+    "WindowsStandalone32",
+    "WindowsStandalone64"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": ["HIVE_AXYL_ADDON_STEAM"],
+  "versionDefines": [
+    {
+      "name": "com.com2usplatform.hiveaxyl.auth.addon.steam",
+      "expression": "",
+      "define": "HIVE_AXYL_ADDON_STEAM"
+    }
+  ],
+  "noEngineReferences": false
+}

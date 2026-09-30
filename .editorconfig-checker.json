@@ -1,0 +1,13 @@
+{
+  "Exclude": [
+    "\\.meta$",
+    "\\.bundle/",
+    "^Library/",
+    "^Temp/",
+    "^Logs/",
+    "^ProjectSettings/",
+    "^Packages/packages-lock\\.json$",
+    "^CODE_OF_CONDUCT\\.md$",
+    "^LICENSE$"
+  ]
+}

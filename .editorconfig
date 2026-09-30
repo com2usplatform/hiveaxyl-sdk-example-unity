@@ -1,0 +1,223 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+max_line_length = 120
+
+[*.editorconfig]
+max_line_length = off
+
+[*.md]
+indent_size = unset
+trim_trailing_whitespace = false
+max_line_length = off
+
+[*.proto]
+indent_size = 2
+
+[*.{yaml,yml,json,jsonc,asmdef}]
+indent_size = 2
+# Structured data: line length is not meaningful, and package manifests carry long
+# dependency URLs (e.g. git-based package references) that cannot be wrapped.
+max_line_length = off
+
+# Unity-generated assets (Scene, prefab, asset, materials, anim, etc.) — keep
+# Unity's native 2-space YAML indent and skip line-length / trailing-whitespace rules.
+[*.{unity,prefab,asset,mat,physicMaterial,physicsMaterial2D,anim,controller,playable,inputactions,renderTexture,asmdef}]
+indent_size = 2
+max_line_length = off
+trim_trailing_whitespace = false
+
+# Unity Gradle templates (Assets/Plugins/Android) — a verbatim copy of the
+# editor's own template plus the project's own lines, so that diffing against
+# PlaybackEngines/AndroidPlayer/Tools/GradleTemplates shows the project's delta
+# and nothing else. Unity indents one line of it with a tab.
+[*.gradle]
+indent_style = unset
+
+# Unity shader / shadergraph / shader includes — vendor formatting varies.
+[*.{shader,shadergraph,hlsl,cginc}]
+indent_style = unset
+indent_size = unset
+max_line_length = off
+trim_trailing_whitespace = false
+
+# TextMesh Pro Essentials (Unity-imported vendor assets) — exempt from all lint rules.
+[Assets/TextMesh Pro/**]
+charset = unset
+indent_style = unset
+indent_size = unset
+max_line_length = off
+trim_trailing_whitespace = false
+insert_final_newline = unset
+end_of_line = unset
+
+[*.{mjs,ts,js,tsx,jsx}]
+indent_size = 2
+
+[*.{cpp,h,hpp}]
+indent_size = 4
+
+# =============================================================================
+# C# Style Rules (Hive Axyl SDK conventions)
+# =============================================================================
+[*.cs]
+indent_size = 4
+
+# --- Braces: Allman style (new line) ---
+csharp_new_line_before_open_brace = all
+csharp_prefer_braces = true:warning
+
+# --- Formatting ---
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types = true
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+csharp_space_after_cast = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_method_call_parameter_list_parentheses = false
+
+# --- var preferences ---
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+# --- Expression-bodied members ---
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_expression_bodied_properties = true:suggestion
+csharp_style_expression_bodied_accessors = true:suggestion
+
+# --- Pattern matching ---
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+
+# --- Null checking ---
+csharp_style_throw_expression = true:suggestion
+csharp_style_conditional_delegate_call = true:suggestion
+
+# --- Qualifier preferences ---
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_property = false:warning
+dotnet_style_qualification_for_method = false:warning
+dotnet_style_qualification_for_event = false:warning
+
+# --- Modifier preferences ---
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
+csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:suggestion
+
+# --- Parentheses ---
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:suggestion
+dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity:suggestion
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:suggestion
+
+# =============================================================================
+# C# Naming Rules (Axyl SDK conventions)
+# Private fields: m_ + camelCase
+# Static fields: s_ + camelCase
+# Constants: k_ + PascalCase
+# =============================================================================
+
+# --- Private instance fields: m_camelCase ---
+dotnet_naming_rule.private_instance_fields_rule.symbols = private_instance_fields
+dotnet_naming_rule.private_instance_fields_rule.style = private_instance_field_style
+dotnet_naming_rule.private_instance_fields_rule.severity = warning
+
+dotnet_naming_symbols.private_instance_fields.applicable_kinds = field
+dotnet_naming_symbols.private_instance_fields.applicable_accessibilities = private, protected, private_protected
+dotnet_naming_symbols.private_instance_fields.required_modifiers =
+
+dotnet_naming_style.private_instance_field_style.capitalization = camel_case
+dotnet_naming_style.private_instance_field_style.required_prefix = m_
+
+# --- Private static fields: s_camelCase ---
+dotnet_naming_rule.private_static_fields_rule.symbols = private_static_fields
+dotnet_naming_rule.private_static_fields_rule.style = private_static_field_style
+dotnet_naming_rule.private_static_fields_rule.severity = warning
+
+dotnet_naming_symbols.private_static_fields.applicable_kinds = field
+dotnet_naming_symbols.private_static_fields.applicable_accessibilities = private, protected, private_protected
+dotnet_naming_symbols.private_static_fields.required_modifiers = static
+
+dotnet_naming_style.private_static_field_style.capitalization = camel_case
+dotnet_naming_style.private_static_field_style.required_prefix = s_
+
+# --- Constants: k_PascalCase ---
+dotnet_naming_rule.constants_rule.symbols = constants
+dotnet_naming_rule.constants_rule.style = constant_style
+dotnet_naming_rule.constants_rule.severity = warning
+
+dotnet_naming_symbols.constants.applicable_kinds = field
+dotnet_naming_symbols.constants.applicable_accessibilities = *
+dotnet_naming_symbols.constants.required_modifiers = const
+
+dotnet_naming_style.constant_style.capitalization = pascal_case
+dotnet_naming_style.constant_style.required_prefix = k_
+
+# --- Public members: PascalCase ---
+dotnet_naming_rule.public_members_rule.symbols = public_members
+dotnet_naming_rule.public_members_rule.style = pascal_case_style
+dotnet_naming_rule.public_members_rule.severity = warning
+
+dotnet_naming_symbols.public_members.applicable_kinds = property, method, event, delegate, class, struct, interface, enum
+dotnet_naming_symbols.public_members.applicable_accessibilities = public, internal
+
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# --- Interfaces: I + PascalCase ---
+dotnet_naming_rule.interfaces_rule.symbols = interfaces
+dotnet_naming_rule.interfaces_rule.style = interface_style
+dotnet_naming_rule.interfaces_rule.severity = warning
+
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_symbols.interfaces.applicable_accessibilities = *
+
+dotnet_naming_style.interface_style.capitalization = pascal_case
+dotnet_naming_style.interface_style.required_prefix = I
+
+# --- Type parameters: T + PascalCase ---
+dotnet_naming_rule.type_parameters_rule.symbols = type_parameters
+dotnet_naming_rule.type_parameters_rule.style = type_parameter_style
+dotnet_naming_rule.type_parameters_rule.severity = warning
+
+dotnet_naming_symbols.type_parameters.applicable_kinds = type_parameter
+dotnet_naming_symbols.type_parameters.applicable_accessibilities = *
+
+dotnet_naming_style.type_parameter_style.capitalization = pascal_case
+dotnet_naming_style.type_parameter_style.required_prefix = T
+
+# --- Parameters and locals: camelCase ---
+dotnet_naming_rule.parameters_rule.symbols = parameters
+dotnet_naming_rule.parameters_rule.style = camel_case_style
+dotnet_naming_rule.parameters_rule.severity = warning
+
+dotnet_naming_symbols.parameters.applicable_kinds = parameter, local
+dotnet_naming_symbols.parameters.applicable_accessibilities = *
+
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+
+[*.{kt,kts}]
+indent_size = 4
+
+[*.swift]
+indent_size = 4
+
+[*.py]
+indent_size = 4
+
+[*.j2]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab

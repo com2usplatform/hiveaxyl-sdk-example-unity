@@ -1,0 +1,313 @@
+{
+  "dependencies": {
+    "com.com2usplatform.hiveaxyl.analytics": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.auth": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.auth.addon.apple": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.auth.addon.credentialmanager": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.auth.addon.gpg": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.auth.addon.steam": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.com2usplatform.hiveaxyl.steamworks": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.auth.addon.webauth": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.core": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.androidjni": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.coupon": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.mailbox": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.payments": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.payments.addon.apple": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.payments.addon.google": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.payments.addon.steam": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.com2usplatform.hiveaxyl.steamworks": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.push": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.push.addon.apns": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.push.addon.applenotification": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.push.addon.fcm": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.serviceaccess": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.steamworks": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.rlabrecque.steamworks.net": "20.2.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.storage": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.com2usplatform.hiveaxyl.tcb": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.rlabrecque.steamworks.net": {
+      "version": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net#20.2.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a3fe8091f7237eef3f38becc3faa29b2dc6f9ce9"
+    },
+    "com.unity.ext.nunit": {
+      "version": "2.0.5",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.mobile.notifications": {
+      "version": "2.4.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.test-framework": {
+      "version": "1.6.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.ext.nunit": "2.0.3",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      }
+    },
+    "com.unity.ugui": {
+      "version": "2.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.ui": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0"
+      }
+    },
+    "com.unity.modules.androidjni": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.hierarchycore": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.imgui": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.jsonserialize": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.physics": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.ui": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.uielements": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.ui": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.hierarchycore": "1.0.0",
+        "com.unity.modules.physics": "1.0.0"
+      }
+    },
+    "com.unity.modules.unitywebrequest": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    }
+  }
+}
