@@ -1,0 +1,19 @@
+{
+    "name": "Hive.Axyl.Samples.Recipes.Payments.Pg",
+    "rootNamespace": "Hive.Axyl.Samples.Recipes",
+    "references": [
+        "Hive.Axyl.Core",
+        "Hive.Axyl.Payments",
+        "Hive.Axyl.Samples.Recipes",
+        "Hive.Axyl.Samples.Recipes.Payments"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

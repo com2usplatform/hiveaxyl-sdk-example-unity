@@ -1,0 +1,26 @@
+{
+    "name": "Hive.Axyl.Samples.Recipes.Payments.Apple",
+    "rootNamespace": "Hive.Axyl.Samples.Recipes",
+    "references": [
+        "Hive.Axyl.Core",
+        "Hive.Axyl.Payments",
+        "Hive.Axyl.Payments.Addon.Apple",
+        "Hive.Axyl.Samples.Recipes",
+        "Hive.Axyl.Samples.Recipes.Payments"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": ["HIVE_AXYL_ADDON_PAYMENTS_APPLE"],
+    "versionDefines": [
+        {
+            "name": "com.com2usplatform.hiveaxyl.payments.addon.apple",
+            "expression": "",
+            "define": "HIVE_AXYL_ADDON_PAYMENTS_APPLE"
+        }
+    ],
+    "noEngineReferences": false
+}

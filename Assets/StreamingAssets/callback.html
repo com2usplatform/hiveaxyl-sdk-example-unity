@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Signing in…</title>
+</head>
+<body>
+    <p id="status">Completing sign-in…</p>
+    <script>
+        // Hive Axyl WebAuth callback page. The provider redirects the
+        // sign-in popup here; this page hands the full callback URL (code + state) back to the
+        // game tab that opened it. It ships in StreamingAssets so it is served next to the player,
+        // which makes location.origin the game's origin: no build-time value to inject, and the
+        // target origin is still named explicitly — never "*" — because the URL carries the code.
+        //
+        // The game closes this popup once it has the message (the addon's settle step); closing
+        // here first can race the message and be read as the user cancelling.
+        if (window.opener) {
+            window.opener.postMessage(window.location.href, window.location.origin);
+        } else {
+            document.getElementById('status').textContent =
+                'This page completes a sign-in started from the game and has nothing to do on its own.';
+        }
+    </script>
+</body>
+</html>

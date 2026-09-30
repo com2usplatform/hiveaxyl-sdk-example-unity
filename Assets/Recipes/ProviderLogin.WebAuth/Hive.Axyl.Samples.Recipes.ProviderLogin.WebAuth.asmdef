@@ -1,0 +1,27 @@
+{
+  "name": "Hive.Axyl.Samples.Recipes.ProviderLogin.WebAuth",
+  "rootNamespace": "Hive.Axyl.Samples.Recipes",
+  "references": [
+    "Hive.Axyl.Core",
+    "Hive.Axyl.Auth",
+    "Hive.Axyl.Samples.Recipes",
+    "Hive.Axyl.Samples.Recipes.ProviderLogin",
+    "Hive.Axyl.Auth.Addon.WebAuth",
+    "Unity.Nuget.Newtonsoft-Json"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": ["HIVE_AXYL_ADDON_WEBAUTH"],
+  "versionDefines": [
+    {
+      "name": "com.com2usplatform.hiveaxyl.auth.addon.webauth",
+      "expression": "",
+      "define": "HIVE_AXYL_ADDON_WEBAUTH"
+    }
+  ],
+  "noEngineReferences": false
+}
