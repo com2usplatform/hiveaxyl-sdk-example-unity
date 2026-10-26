@@ -19,7 +19,7 @@ Copy and adapt the Recipes you need; they have no API compatibility promise acro
 | Undelivered recovery | `FindUndeliveredAsync` → `PreparePurchaseAsync` → `ClosePurchaseAsync` | `UndeliveredRecoveryExample` |
 | Subscription | `StartSubscriptionAsync` → `SaveSubscriptionAsync` → `ConfirmSubscriptionAsync` | `SubscriptionExample` |
 | Push preparation | `PrepareAsync` | `PushPreparationExample` |
-| Local notification | `RequestPermissionAsync` / `ScheduleAsync` / `Cancel` | `LocalNotificationExamples` |
+| Local notification | `RequestPermissionAsync` / `ScheduleAsync` / `CancelAsync` | `LocalNotificationExamples` |
 
 Use `IAuthService.UnlinkProviderAsync` directly for unlinking; there is no unlink Recipe.
 For provider and market selection, see [Adapters](../RecipeExamples/Adapters.md).
@@ -48,16 +48,17 @@ Install the SDK packages and copy any additional Recipe folders named below.
 | `ProviderLogin.CredentialManager/` | `…ProviderLogin.CredentialManager` | `com.com2usplatform.hiveaxyl.auth.addon.credentialmanager` (Google, native Android). Also needs `ProviderLogin/` |
 | `ProviderLogin.Gpg/` | `…ProviderLogin.Gpg` | `com.com2usplatform.hiveaxyl.auth.addon.gpg`. Also needs `ProviderLogin/` |
 | `ProviderLogin.Steam/` | `…ProviderLogin.Steam` | `com.com2usplatform.hiveaxyl.auth.addon.steam`. Also needs `ProviderLogin/` |
-| `ProviderLogin.WebAuth/` | `…ProviderLogin.WebAuth` | `com.com2usplatform.hiveaxyl.auth.addon.webauth` (Apple, Google, X, and Steam browser login) and `com.unity.nuget.newtonsoft-json`. Also needs `ProviderLogin/` |
+| `ProviderLogin.WebAuth/` | `…ProviderLogin.WebAuth` | `com.com2usplatform.hiveaxyl.auth.addon.webauth` (Google, X, Steam, and relay-based Apple browser login) and `com.unity.nuget.newtonsoft-json`. Also needs `ProviderLogin/` |
 | `Payments/` | `…Recipes.Payments` | Core, Payments — **no addon** |
 | `Payments.Apple/` | `…Payments.Apple` | `com.com2usplatform.hiveaxyl.payments.addon.apple`. Also needs `Payments/` |
 | `Payments.Google/` | `…Payments.Google` | `com.com2usplatform.hiveaxyl.payments.addon.google`. Also needs `Payments/` |
 | `Payments.Steam/` | `…Payments.Steam` | Core, Payments; also needs `Payments/`. No addon compile dependency; `com.com2usplatform.hiveaxyl.payments.addon.steam` is required for `AddSteamMicrotransactions` and approval events. |
 | `Payments.Pg/` | `…Payments.Pg` | Core, Payments — **no addon**. Also needs `Payments/` |
 | `Push/` | `…Recipes.Push` | Core, Push — **no addon** |
-| `Push.Apns/` | `…Push.Apns` | `com.com2usplatform.hiveaxyl.push.addon.apns`; on iOS also `com.unity.mobile.notifications` (the permission ask — without it the ask reports a precondition failure; macOS does not need it). Also needs `Push/` |
+| `Push.Apns/` | `…Push.Apns` | `com.com2usplatform.hiveaxyl.push.addon.apns`; on iOS also `com.unity.mobile.notifications` (the permission ask — without it the ask reports a precondition failure; macOS does not need it). Also needs `Push/`. Carries the APNs delegate forwarder (`.cs` + `.mm`, iOS plugins; macOS builds them into a bundle — [AppleDelegateForwarding.md](../RecipeExamples/AppleDelegateForwarding.md)) |
 | `Push.Fcm/` | `…Push.Fcm` | `com.com2usplatform.hiveaxyl.push.addon.fcm`. Also needs `Push/` |
-| `LocalNotification/` | `…Recipes.LocalNotification` | `com.unity.mobile.notifications` — a Unity registry package, not an SDK addon; the same `versionDefines` guard applies |
+| `LocalNotification/` | `…Recipes.LocalNotification` | Core — **no addon**. `UnityLocalNotificationSource` (Android / iOS) additionally needs `com.unity.mobile.notifications` — a Unity registry package, not an SDK addon; the same `versionDefines` guard applies, to that one file |
+| `LocalNotification.Apple/` | `…LocalNotification.Apple` | `com.com2usplatform.hiveaxyl.push.addon.applenotification` (macOS). Also needs `LocalNotification/`. Carries the local-notification delegate forwarder (`.cs` + `.mm`, built into a macOS bundle — [AppleDelegateForwarding.md](../RecipeExamples/AppleDelegateForwarding.md)) |
 
 Credential Manager requires its SDK addon package and an Android OAuth client registered for your
 app's package name and signing certificate. Pass the server's web client ID to the source.
@@ -65,15 +66,50 @@ Google Play Games is a separate provider.
 
 ## Apple browser sign-in
 
-Use `AppleWebCredentialSource` with a Services ID, an HTTPS relay in `WebAuthOptions.RedirectUri`,
-and server-side code exchange. The relay must accept Apple's `form_post` and forward `code`,
-`error`, and the unprefixed `state` to the app:
+For relay-based browser sign-in, use `AppleWebCredentialSource` with a Services ID, an HTTPS relay in
+`WebAuthOptions.RedirectUri`, and server-side code exchange. The relay must accept Apple's
+`form_post` and forward `code`, `error`, and the unprefixed `state` to the app:
 
 - Windows loopback uses the `<port>:<state>` relay convention.
 - Other platforms pass `callbackUri` to the source and use `<callback-uri>|<state>`.
   The relay must allow that destination.
-- WebGL requires an HTTPS callback page on the player's origin that posts the result to the opener,
-  such as `StreamingAssets/callback.html`. This page does not replace the HTTPS relay.
+
+Both sources can be used on WebGL: choose `AppleWebCredentialSource` when a relay
+accepts Apple POST responses and forwards to the game callback, or `AppleJsPopupCredentialSource`
+when using Apple JS directly. The JS popup source is currently supported only in a Unity WebGL player.
+
+For Apple JS popup sign-in, use `AppleJsPopupCredentialSource` in `ProviderLogin.Apple/`. The source only
+requests authorization, exchanges the code with `IAuthService`, and maps the outcome.
+Its `Internal/WebGL/` folder encapsulates the browser implementation:
+
+- `AppleWebAuthorization` validates configuration, creates state and a SHA-256 nonce,
+  and returns a parsed authorization result.
+- `AppleWebPopupBridge` owns request correlation, cancellation, and the C#/JS boundary.
+- `AppleWebSignIn.jslib` loads Apple JS from its CDN and calls `signIn` with `usePopup: true`.
+- `AppleWebSignInParser` checks state and maps credentials, errors, and profile data.
+
+Copy the entire `ProviderLogin.Apple/` folder, including the `.jslib`, together with
+`ProviderLogin/`. The Apple addon supplies the credential and result types.
+The popup uses `usePopup: true` to receive authorization responses through Apple JS,
+including profile data requested with the `name` and `email` scopes.
+
+Call `AppleJsPopupCredentialSource.Preload()` when the screen opens, and start `AcquireAsync`
+from the player's click without awaiting other work first. Pass an HTTPS Return URL registered
+on the Apple Services ID, with the same origin as the player's page. The sample fills in the
+current origin's `/oauth/callback.html`; run it on an HTTPS domain and register that exact URL.
+The popup returns its result through Apple JS, so no POST handler or callback page is needed
+for this path. The same Return URL is passed to the server's code exchange.
+
+Pass an empty scope to request neither name nor email. Caller cancellation remains
+`Failure(Cancelled)`; dismissing the popup is `UserCanceled`. A newer attempt cancels the
+previous managed wait; cancellation does not close Apple's window, and late results are ignored.
+
+After authorization, `Profile` exposes the Recipe's `AppleWebGlProfile`, even if server exchange
+fails. Preserve first-authorization profile data for a retry, but associate it with a
+server-verified account before persisting it. Apple does not send the name on returning sign-ins.
+The parser decodes identity-token claims only for profile hints; it does not validate a JWT.
+The nonce hash is sent to Apple, matching the native Recipe's convention; the existing code
+exchange contract does not accept a raw nonce, and this Recipe does not claim nonce verification.
 
 ## Steam browser sign-in
 

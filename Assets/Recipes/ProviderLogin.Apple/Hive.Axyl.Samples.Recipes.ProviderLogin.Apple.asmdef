@@ -3,6 +3,7 @@
   "rootNamespace": "Hive.Axyl.Samples.Recipes",
   "references": [
     "Hive.Axyl.Core",
+    "Hive.Axyl.Auth",
     "Hive.Axyl.Samples.Recipes",
     "Hive.Axyl.Samples.Recipes.ProviderLogin",
     "Hive.Axyl.Auth.Addon.Apple"

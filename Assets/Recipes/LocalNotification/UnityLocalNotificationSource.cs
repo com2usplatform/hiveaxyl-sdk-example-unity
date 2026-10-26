@@ -1,5 +1,10 @@
 // Copyright (c) Com2uS Platform Corp. All rights reserved.
 
+// Only with com.unity.mobile.notifications installed (the define comes from the asmdef's
+// versionDefines). The assembly itself stays, so the Recipe and its interface are there for
+// AppleLocalNotificationSource on a macOS-only project that has no use for the package.
+#if HIVE_AXYL_UNITY_MOBILE_NOTIFICATIONS
+
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -79,6 +84,19 @@ namespace Hive.Axyl.Samples.Recipes
         }
 
         /// <inheritdoc />
+        public Task<LocalNotificationScheduleResult> ScheduleAsync(
+            LocalNotificationRequest request, CancellationToken cancellationToken) =>
+            Task.FromResult(Schedule(request));
+
+        /// <inheritdoc cref="ILocalNotificationSource.CancelAsync" />
+        public Task<HiveError> CancelAsync(int id, CancellationToken cancellationToken) =>
+            Task.FromResult(Cancel(id));
+
+        /// <inheritdoc cref="ILocalNotificationSource.CancelAllAsync" />
+        public Task<HiveError> CancelAllAsync(CancellationToken cancellationToken) =>
+            Task.FromResult(CancelAll());
+
+        /// <summary>Hands a validated request to the OS scheduler. The package answers at once.</summary>
         public LocalNotificationScheduleResult Schedule(LocalNotificationRequest request)
         {
 #if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
@@ -125,7 +143,9 @@ namespace Hive.Axyl.Samples.Recipes
 #endif
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Withdraws the scheduled notification with <paramref name="id"/>; null when it went through.
+        /// </summary>
         public HiveError Cancel(int id)
         {
 #if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
@@ -143,7 +163,11 @@ namespace Hive.Axyl.Samples.Recipes
 #endif
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Withdraws every notification the app scheduled — this Recipe's and the game's own
+        /// alike, the narrowest cancel the package offers (it can neither list what is pending
+        /// nor scope a cancel). Null when it went through.
+        /// </summary>
         public HiveError CancelAll()
         {
 #if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
@@ -233,3 +257,5 @@ namespace Hive.Axyl.Samples.Recipes
 #endif
     }
 }
+
+#endif

@@ -12,7 +12,8 @@ Pass an `IProviderCredentialSource` to `ProviderLoginExample.RunAsync` or `LinkP
 | Route | Create the source | Required setup |
 | --- | --- | --- |
 | Apple native | `new AppleCredentialSource(new AppleSignInOptions { RequestEmail = true })` | AddAppleSignIn; Apple app/signing configuration |
-| Apple browser | `new AppleWebCredentialSource(webOptions, callbackUri)` | AddWebAuth; Apple Services ID; HTTPS relay |
+| Apple browser via relay (including WebGL) | `new AppleWebCredentialSource(webOptions, callbackUri)` | AddWebAuth; Apple Services ID; HTTPS relay; hosted callback page on WebGL |
+| Apple JS popup (WebGL only) | `new AppleJsPopupCredentialSource(servicesId, returnUrl)` | Apple addon types + Recipe popup helpers; `AppleJsPopupCredentialSource.Preload()` before the click; registered HTTPS domain and Return URL |
 | Google native | `new GoogleCredentialManagerCredentialSource(webClientId)` | AddCredentialManager; Android package/signing configuration; server web client ID |
 | Google browser | `new GoogleCredentialSource(webOptions)` | AddWebAuth; OAuth registration and callback |
 | Google Play Games | `new GooglePlayGamesCredentialSource(webClientId)` | AddAuth + AddGooglePlayGames; Android Play Games configuration; server web client ID |
@@ -23,7 +24,7 @@ Pass an `IProviderCredentialSource` to `ProviderLoginExample.RunAsync` or `LinkP
 Create `webOptions` with `WebAuthOptions.Create(authorizeEndpoint, providerClientId, redirectUri, scope)`
 using your provider's registered values.
 
-- **Apple browser:** `webOptions.RedirectUri` is the HTTPS relay; `callbackUri` is the app callback
+- **Apple browser via relay (including WebGL):** `webOptions.RedirectUri` is the HTTPS relay; `callbackUri` is the app callback
   the relay forwards to (omit for Windows loopback). Server-side exchange is required.
   See the [Apple browser setup](../Recipes/README.md#apple-browser-sign-in) for relay and WebGL requirements.
 - **Steam browser:** `returnTo` is the URL Steam returns to; `redirectUri` is the callback captured
@@ -50,8 +51,9 @@ Your game server must [verify and confirm delivery](README.md#payment-server-int
 | Feature | Create the source | Required setup |
 | --- | --- | --- |
 | FCM | `new FcmPushTokenSource()` | AddPush + AddFCM; Firebase configuration; Android permissions |
-| APNs | `new ApnsPushTokenSource()` | AddPush + AddAPNS; signing/entitlements; native delegate forwarding |
-| Local notifications | `new UnityLocalNotificationSource(channelId, channelName, description)` | Unity Mobile Notifications; Android channel metadata; no SDK initialization |
+| APNs | `new ApnsPushTokenSource()` | AddPush + AddAPNS; signing/entitlements; the `Push.Apns` forwarder installed ([AppleDelegateForwarding.md](AppleDelegateForwarding.md)) |
+| Local notifications (Android / iOS) | `new UnityLocalNotificationSource(channelId, channelName, description)` | Unity Mobile Notifications; Android channel metadata; no SDK initialization |
+| Local notifications (macOS) | `new AppleLocalNotificationSource(HiveCore.Resolve<ILocalNotificationApplePlugin>())` | AddAppleNotification; the `LocalNotification.Apple` forwarder installed, for the presented / opened events |
 
 Call `PushPreparationExample.RunAsync` with the push source, a `PushPreparation`, and
 `restoreNotificationDelegate` (a no-op where delegate restoration is not needed). Use

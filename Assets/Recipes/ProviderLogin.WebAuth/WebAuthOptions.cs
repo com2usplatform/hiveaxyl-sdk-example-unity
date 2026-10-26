@@ -11,7 +11,7 @@ namespace Hive.Axyl.Samples.Recipes
     /// </summary>
     public sealed class WebAuthOptions
     {
-        private const string k_WebGlCallbackPage = "callback.html";
+        private const string k_WebGlCallbackPath = "/oauth/callback.html";
 
         private WebAuthOptions(
             string authorizeEndpoint,
@@ -59,10 +59,23 @@ namespace Hive.Axyl.Samples.Recipes
         public bool UsesLoopbackRedirect => string.IsNullOrEmpty(RedirectUri);
 
         /// <summary>
-        /// The WebGL callback-page URI. Ship <c>Assets/StreamingAssets/callback.html</c>
-        /// with the player and register its deployed URL with the provider. Used only on WebGL.
+        /// The WebGL callback-page URI: <c>/oauth/callback.html</c> on the page's origin. Host a
+        /// copy of <c>Assets/StreamingAssets/callback.html</c> there and register that one URL
+        /// with the provider. The path is fixed on purpose: a provider exact-matches its registered
+        /// redirect URI, and a page under the player's own folder would move with every deployment.
+        /// Used only on WebGL; empty where the page URL is unknown (the Editor).
         /// </summary>
-        public static string WebGlCallbackUri() => Application.streamingAssetsPath + "/" + k_WebGlCallbackPage;
+        public static string WebGlCallbackUri() => WebGlCallbackUri(Application.absoluteURL);
+
+        /// <summary>
+        /// The callback-page URI for the page at <paramref name="pageUrl"/>: its origin (scheme,
+        /// host and any explicit port) plus <c>/oauth/callback.html</c>, whatever path, query or
+        /// fragment the page itself has. Empty when <paramref name="pageUrl"/> is not an absolute URL.
+        /// </summary>
+        internal static string WebGlCallbackUri(string pageUrl) =>
+            Uri.TryCreate(pageUrl, UriKind.Absolute, out var page)
+                ? page.GetLeftPart(UriPartial.Authority) + k_WebGlCallbackPath
+                : string.Empty;
 
         /// <summary>
         /// The provider's OAuth token endpoint. Set for a public client (no <c>client_secret</c>

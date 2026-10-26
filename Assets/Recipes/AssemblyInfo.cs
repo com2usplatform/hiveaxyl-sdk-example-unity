@@ -18,4 +18,5 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Hive.Axyl.Samples.Recipes.Push")]
 [assembly: InternalsVisibleTo("Hive.Axyl.Samples.Recipes.Push.Apns")]
 [assembly: InternalsVisibleTo("Hive.Axyl.Samples.Recipes.Push.Fcm")]
+[assembly: InternalsVisibleTo("Hive.Axyl.Samples.Recipes.LocalNotification.Apple")]
 [assembly: InternalsVisibleTo("Hive.Axyl.Samples.Recipes.Tests")]

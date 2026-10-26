@@ -21,10 +21,10 @@ Choose the example you need and implement its application steps; these are not r
 | Consumable purchase | [ConsumablePurchaseExample.cs](Payments/ConsumablePurchaseExample.cs) | Catalog/order, external payment, durable pending record, server delivery |
 | Undelivered recovery | [UndeliveredRecoveryExample.cs](Payments/UndeliveredRecoveryExample.cs) | Discover entries, reconcile metadata, grant once, close each entry |
 | Subscription start | [SubscriptionExample.cs](Payments/SubscriptionExample.cs) | Subscription product/offer, server entitlement grant, confirmation |
-| Push preparation | [PushPreparationExample.cs](Notifications/PushPreparationExample.cs) | Native setup, consent, event lifetime, serialized refresh registration |
-| Notification permission | [LocalNotificationExamples.cs](Notifications/LocalNotification/LocalNotificationExamples.cs) / RequestPermissionAsync | Requires `com.unity.mobile.notifications`; Permission timing and iOS delegate restoration |
-| Notification scheduling | Same file / ScheduleAsync | Requires `com.unity.mobile.notifications`; Future time and saved notification ID |
-| Notification cancellation | Same file / Cancel or CancelAll | Requires `com.unity.mobile.notifications`; Saved ID removal only after successful cancellation |
+| Push preparation | [PushPreparationExample.cs](Notifications/PushPreparationExample.cs) | Native setup, consent, event lifetime, serialized refresh registration; on Apple, the delegate forwarder — [AppleDelegateForwarding.md](AppleDelegateForwarding.md) |
+| Notification permission | [LocalNotificationExamples.cs](Notifications/LocalNotification/LocalNotificationExamples.cs) / RequestPermissionAsync | Android / iOS: `com.unity.mobile.notifications`; macOS: the Apple local-notification add-on. Permission timing and iOS delegate restoration |
+| Notification scheduling | Same file / ScheduleAsync | Future time and saved notification ID |
+| Notification cancellation | Same file / CancelAsync or CancelAllAsync | Saved ID removal only after successful cancellation |
 
 After login, check `IsBlocked` and save the session securely. A null `AutoLoginOutcome.IsBlocked`
 is not confirmation that the player is unblocked. For username signup, check `IsNewAccount`;
