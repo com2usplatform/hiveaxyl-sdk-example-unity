@@ -7,7 +7,11 @@ using Hive.Axyl.Samples.Recipes;
 
 namespace Hive.Axyl.Samples.RecipeExamples
 {
-    /// <summary>Three independent scenarios; local notifications do not require SDK initialization.</summary>
+    /// <summary>
+    /// Three independent scenarios. With <c>UnityLocalNotificationSource</c> (Android / iOS) no SDK
+    /// initialization is needed; <c>AppleLocalNotificationSource</c> (macOS) takes the add-on
+    /// plugin, which the initialized registry resolves.
+    /// </summary>
     public static class LocalNotificationExamples
     {
         public static async Task<LocalNotificationOutcome> RequestPermissionAsync(
@@ -78,9 +82,10 @@ namespace Hive.Axyl.Samples.RecipeExamples
             }
         }
 
-        public static LocalNotificationOutcome Cancel(ILocalNotificationSource source, int savedId)
+        public static async Task<LocalNotificationOutcome> CancelAsync(
+            ILocalNotificationSource source, int savedId, CancellationToken cancellationToken)
         {
-            var outcome = new LocalNotificationRecipe(source).Cancel(savedId);
+            var outcome = await new LocalNotificationRecipe(source).CancelAsync(savedId, cancellationToken);
             if (outcome.Status == LocalNotificationStatus.Success)
             {
                 // APP: remove this id from your saved reminders.
@@ -92,10 +97,14 @@ namespace Hive.Axyl.Samples.RecipeExamples
             return outcome;
         }
 
-        public static LocalNotificationOutcome CancelAll(ILocalNotificationSource source)
+        public static async Task<LocalNotificationOutcome> CancelAllAsync(
+            ILocalNotificationSource source, CancellationToken cancellationToken)
         {
-            // APP: call only for an intentional reset of ALL local notifications owned by this app.
-            var outcome = new LocalNotificationRecipe(source).CancelAll();
+            // APP: call only for an intentional reset. The scope is the source's:
+            // UnityLocalNotificationSource (Android/iOS) withdraws EVERY notification this app
+            // scheduled, the ones outside this Recipe included, while AppleLocalNotificationSource
+            // (macOS) withdraws only what the Recipe scheduled.
+            var outcome = await new LocalNotificationRecipe(source).CancelAllAsync(cancellationToken);
             if (outcome.Status == LocalNotificationStatus.Success)
             {
                 // APP: clear your saved reminder ids.

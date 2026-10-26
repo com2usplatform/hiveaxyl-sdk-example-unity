@@ -1,74 +1,74 @@
 {
   "dependencies": {
     "com.com2usplatform.hiveaxyl.analytics": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.auth": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.auth.addon.apple": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.auth.addon.credentialmanager": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.com2usplatform.hiveaxyl.core": "1.0.1",
         "com.unity.modules.androidjni": "1.0.0"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.auth.addon.gpg": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.com2usplatform.hiveaxyl.core": "1.0.1",
         "com.unity.modules.androidjni": "1.0.0"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.auth.addon.steam": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0",
-        "com.com2usplatform.hiveaxyl.steamworks": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1",
+        "com.com2usplatform.hiveaxyl.steamworks": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.auth.addon.webauth": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.com2usplatform.hiveaxyl.core": "1.0.1",
         "com.unity.modules.androidjni": "1.0.0"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.core": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -78,109 +78,109 @@
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.coupon": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.mailbox": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.payments": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.payments.addon.apple": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.payments.addon.google": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.com2usplatform.hiveaxyl.core": "1.0.1",
         "com.unity.modules.androidjni": "1.0.0"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.payments.addon.steam": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0",
-        "com.com2usplatform.hiveaxyl.steamworks": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1",
+        "com.com2usplatform.hiveaxyl.steamworks": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.push": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.push.addon.apns": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.push.addon.applenotification": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.push.addon.fcm": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.com2usplatform.hiveaxyl.core": "1.0.1",
         "com.unity.modules.androidjni": "1.0.0"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.serviceaccess": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.steamworks": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -189,21 +189,21 @@
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.storage": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0",
+        "com.com2usplatform.hiveaxyl.core": "1.0.1",
         "com.unity.modules.androidjni": "1.0.0"
       },
       "url": "https://package.openupm.com"
     },
     "com.com2usplatform.hiveaxyl.tcb": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.com2usplatform.hiveaxyl.core": "1.0.0"
+        "com.com2usplatform.hiveaxyl.core": "1.0.1"
       },
       "url": "https://package.openupm.com"
     },

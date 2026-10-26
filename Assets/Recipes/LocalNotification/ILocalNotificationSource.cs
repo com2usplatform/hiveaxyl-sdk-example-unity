@@ -91,8 +91,14 @@ namespace Hive.Axyl.Samples.Recipes
 
     /// <summary>
     /// The platform's half of local notifications: the OS permission ask and the OS scheduler.
-    /// Use <see cref="UnityLocalNotificationSource"/> for Unity's platform notification APIs.
+    /// Use <see cref="UnityLocalNotificationSource"/> for Unity's platform notification APIs on
+    /// Android and iOS, and <see cref="AppleLocalNotificationSource"/> for the SDK's Apple
+    /// local-notification add-on on macOS.
     /// </summary>
+    /// <remarks>
+    /// Every call is asynchronous because the add-on's scheduler is: its calls cross a native
+    /// bridge and answer through a callback. A source over a synchronous API completes at once.
+    /// </remarks>
     public interface ILocalNotificationSource
     {
         /// <summary>
@@ -101,17 +107,26 @@ namespace Hive.Axyl.Samples.Recipes
         /// </summary>
         Task<LocalNotificationPermissionResult> RequestPermissionAsync(CancellationToken cancellationToken);
 
-        /// <summary>Hands a validated request to the OS scheduler.</summary>
-        LocalNotificationScheduleResult Schedule(LocalNotificationRequest request);
+        /// <summary>
+        /// Hands a validated request to the OS scheduler. A cancellation must not orphan a
+        /// reservation the OS already holds: answer it as scheduled, with its id, or withdraw
+        /// it before answering the cancellation.
+        /// </summary>
+        Task<LocalNotificationScheduleResult> ScheduleAsync(
+            LocalNotificationRequest request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Withdraws the scheduled notification with <paramref name="id"/>. Answers null when the
         /// cancel went through — an id that is not scheduled is a no-op, not an error — and the
         /// preserved error otherwise.
         /// </summary>
-        HiveError Cancel(int id);
+        Task<HiveError> CancelAsync(int id, CancellationToken cancellationToken);
 
-        /// <summary>Withdraws every scheduled notification. Null when it went through.</summary>
-        HiveError CancelAll();
+        /// <summary>
+        /// Withdraws scheduled notifications; null when it went through. The scope is the
+        /// source's to define and document: the narrowest its OS API can honor, down to only
+        /// what the source itself scheduled.
+        /// </summary>
+        Task<HiveError> CancelAllAsync(CancellationToken cancellationToken);
     }
 }

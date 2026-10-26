@@ -13,7 +13,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": false,
-    "defineConstraints": ["HIVE_AXYL_UNITY_MOBILE_NOTIFICATIONS"],
+    "defineConstraints": [],
     "versionDefines": [
         {
             "name": "com.unity.mobile.notifications",

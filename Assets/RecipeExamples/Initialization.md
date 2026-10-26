@@ -90,8 +90,11 @@ For recovery, restore missing metadata from the original order, not a current ca
 ## Push and local notifications
 
 FCM requires `google-services.json` and Android player setup. APNs requires signing/entitlements and
-its native delegate-forwarder template. Local notifications require Unity Mobile Notifications and
-Android channel metadata, but no SDK initialization; the source supports Android/iOS players.
+the delegate forwarder the `Push.Apns` Recipe carries — see
+[AppleDelegateForwarding.md](AppleDelegateForwarding.md). Local notifications on Android / iOS require
+Unity Mobile Notifications and Android channel metadata, but no SDK initialization; on macOS they go
+through the Apple local-notification add-on and its forwarder (`LocalNotification.Apple`), which the
+initialized registry resolves.
 
 Subscribe to notification events for reception/navigation. One application owner should read the single-use
 startup buffer and route the result when navigation is ready:
@@ -104,7 +107,7 @@ Normal launches may return objects with empty fields. Subscribe to `TokenRefresh
 retain the latest token during preparation, then repeat after success only if it differs from the registered token.
 Stop on failure/cancellation and unregister handlers at teardown.
 
-On iOS, bind the examples' `restoreNotificationDelegate` to the installed forwarder's `Install` entry point.
+On iOS, bind the examples' `restoreNotificationDelegate` to `ApnsRemoteNotificationForwarder.Install`.
 They call it in `finally` after permission requests, including failure/cancellation, because Unity can replace
 that delegate. Pass `() => { }` only where the integration has no such forwarder.
 

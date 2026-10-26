@@ -12,7 +12,10 @@ namespace Hive.Axyl.Samples.Recipes
     /// The permission check may show an OS prompt.
     /// </summary>
     /// <remarks>
-    /// Requires Unity Mobile Notifications; SDK initialization is not needed.
+    /// What the Recipe needs depends on the source: <see cref="UnityLocalNotificationSource"/>
+    /// (Android/iOS) requires Unity Mobile Notifications and no SDK initialization, while
+    /// <see cref="AppleLocalNotificationSource"/> (macOS) requires the SDK's Apple
+    /// local-notification add-on, resolved after SDK initialization.
     /// Permission is shared with push notifications. A non-granted result schedules nothing
     /// and does not establish whether another request will show a prompt.
     /// Retain the returned notification ID to cancel it later.
@@ -58,7 +61,7 @@ namespace Hive.Axyl.Samples.Recipes
 
         /// <summary>
         /// Validates the request, checks permission, and schedules one notification if granted.
-        /// On success, pass <see cref="LocalNotificationOutcome.Id"/> to <see cref="Cancel"/>
+        /// On success, pass <see cref="LocalNotificationOutcome.Id"/> to <see cref="CancelAsync"/>
         /// to cancel the reservation.
         /// </summary>
         /// <param name="request">What to show and when. Must not be null.</param>
@@ -91,9 +94,17 @@ namespace Hive.Axyl.Samples.Recipes
                 return permission;
             }
 
-            var scheduled = m_source.Schedule(request);
-            return scheduled.IsSuccess
-                ? LocalNotificationOutcome.Succeeded(scheduled.Id)
+            var scheduled = await m_source.ScheduleAsync(request, cancellationToken);
+            if (scheduled.IsSuccess)
+            {
+                // Even when a cancel landed during the call: the OS holds the reservation, a
+                // cancel here cannot unmake it, and the id is the one handle that can — so it
+                // must reach the caller rather than be traded for a cancellation report.
+                return LocalNotificationOutcome.Succeeded(scheduled.Id);
+            }
+
+            return cancellationToken.IsCancellationRequested
+                ? Canceled(LocalNotificationStep.Schedule, "while scheduling")
                 : LocalNotificationOutcome.Failed(LocalNotificationStep.Schedule, scheduled.Error);
         }
 
@@ -101,10 +112,39 @@ namespace Hive.Axyl.Samples.Recipes
         /// Withdraws the scheduled notification with <paramref name="id"/>. An id that is no longer
         /// scheduled — shown already, or never scheduled — is a no-op, not an error.
         /// </summary>
-        public LocalNotificationOutcome Cancel(int id) => TranslateCancel(m_source.Cancel(id));
+        public async Task<LocalNotificationOutcome> CancelAsync(
+            int id, CancellationToken cancellationToken = default)
+        {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return Canceled(LocalNotificationStep.Cancel, "before the cancel");
+            }
 
-        /// <summary>Withdraws every scheduled notification.</summary>
-        public LocalNotificationOutcome CancelAll() => TranslateCancel(m_source.CancelAll());
+            var error = await m_source.CancelAsync(id, cancellationToken);
+            return cancellationToken.IsCancellationRequested
+                ? Canceled(LocalNotificationStep.Cancel, "during the cancel")
+                : TranslateCancel(error);
+        }
+
+        /// <summary>
+        /// Withdraws scheduled notifications, in the scope the source defines:
+        /// <see cref="UnityLocalNotificationSource"/> withdraws every notification the app
+        /// scheduled, the game's own included (the package offers no narrower cancel), while
+        /// <see cref="AppleLocalNotificationSource"/> withdraws only what it scheduled itself.
+        /// </summary>
+        public async Task<LocalNotificationOutcome> CancelAllAsync(
+            CancellationToken cancellationToken = default)
+        {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return Canceled(LocalNotificationStep.Cancel, "before the cancel");
+            }
+
+            var error = await m_source.CancelAllAsync(cancellationToken);
+            return cancellationToken.IsCancellationRequested
+                ? Canceled(LocalNotificationStep.Cancel, "during the cancel")
+                : TranslateCancel(error);
+        }
 
         // The refusals that need no call to discover. Answers null when the request is sound.
         private static LocalNotificationOutcome Validate(LocalNotificationRequest request)

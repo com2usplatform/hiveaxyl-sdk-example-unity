@@ -1,0 +1,25 @@
+{
+    "name": "Hive.Axyl.Samples.Recipes.LocalNotification.Apple",
+    "rootNamespace": "Hive.Axyl.Samples.Recipes",
+    "references": [
+        "Hive.Axyl.Core",
+        "Hive.Axyl.Push.Addon.AppleNotification",
+        "Hive.Axyl.Samples.Recipes",
+        "Hive.Axyl.Samples.Recipes.LocalNotification"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": ["HIVE_AXYL_ADDON_PUSH_APPLENOTIFICATION"],
+    "versionDefines": [
+        {
+            "name": "com.com2usplatform.hiveaxyl.push.addon.applenotification",
+            "expression": "",
+            "define": "HIVE_AXYL_ADDON_PUSH_APPLENOTIFICATION"
+        }
+    ],
+    "noEngineReferences": false
+}

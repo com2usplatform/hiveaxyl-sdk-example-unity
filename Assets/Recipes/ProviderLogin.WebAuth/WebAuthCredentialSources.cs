@@ -68,6 +68,7 @@ namespace Hive.Axyl.Samples.Recipes
     /// <summary>
     /// Signs in with Apple through an HTTPS callback relay and exchanges the code on the server.
     /// The relay must accept form_post and forward the code and unprefixed state to the app.
+    /// Also usable in WebGL when the relay forwards to a hosted callback page.
     /// </summary>
     public sealed class AppleWebCredentialSource : IProviderCredentialSource
     {
